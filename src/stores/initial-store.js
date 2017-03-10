@@ -1,4 +1,4 @@
-import createPedux from '../pedux';
+import createPreducs from '../preducs';
 
 // Define store model
 const defaultStoreModel = {
@@ -28,6 +28,6 @@ const interceptors = {
 };
 
 // Finally, our pedux
-const initialStore = createPedux(defaultStoreModel, interceptors);
+const initialStore = createPreducs(defaultStoreModel, interceptors);
 
 export default initialStore;

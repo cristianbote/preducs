@@ -4,7 +4,7 @@ export const TYPES = {
     DUMP: 'dump'
 };
 
-export default function createPedux(initialData, interceptors = {}) {
+export default function createPreducs(initialData, interceptors = {}) {
     return {
         data: { ...initialData },
         listeners: { all: [] },
