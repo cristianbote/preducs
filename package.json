@@ -7,6 +7,11 @@
     "serve": "webpack-dev-server --progress --inline --port 8080 --config webpack.config.js",
     "build": "webpack --config webpack.config.js"
   },
+  "files": [
+    "preducs.js",
+    "README.md",
+    "LICENSE"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

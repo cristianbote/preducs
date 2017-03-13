@@ -4,6 +4,12 @@ export const TYPES = {
     DUMP: 'dump'
 };
 
+/**
+ * Creates the store with data
+ * @param {object} initialData
+ * @param {object} interceptors
+ * @returns {{data: {}, listeners: {all: Array}, interceptors: {}, update: update, remove: remove, dump: dump, subscribe: subscribe, trigger: trigger}}
+ */
 export default function createPreducs(initialData, interceptors = {}) {
     return {
         data: { ...initialData },

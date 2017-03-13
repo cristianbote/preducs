@@ -1,4 +1,4 @@
-import createPreducs from '../preducs';
+import createPreducs from '../../preducs';
 
 // Define store model
 const defaultStoreModel = {

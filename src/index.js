@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import initialStore from './stores/initial-store';
 
-class TodoItem extends React.Component {
+class TodoItem extends Component {
 
     constructor(props, ...args) {
         super(props, ...args);
@@ -28,7 +28,7 @@ class TodoItem extends React.Component {
 
 }
 
-class TodoItems extends React.Component {
+class TodoItems extends Component {
 
     render() {
         return (
@@ -42,7 +42,7 @@ class TodoItems extends React.Component {
 
 }
 
-class AppComponent extends React.Component {
+class AppComponent extends Component {
 
     constructor(props, ...args) {
         super(props, ...args);
