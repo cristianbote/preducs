@@ -13,11 +13,11 @@ function interceptor(cached, state, modifier) {
 }
 
 /**
- * Create an easyflux store instance.
- * @param {object} initialData
+ * Create an store instance.
+ * @param {object} [initialData]
  * @returns {object}
  */
-export default function createEasyflux(initialData = {}) {
+export default function createStore(initialData = {}) {
     return {
         __data: { ...initialData },
         __history: {},

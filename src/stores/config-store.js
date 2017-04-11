@@ -1,6 +1,6 @@
-import createEasyflux from '../../preducs-two';
+import createStore from '../../index';
 
-let configStore = createEasyflux({
+let configStore = createStore({
     step: 100,
     items: []
 }, true);

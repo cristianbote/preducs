@@ -4,21 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack-dev-server --progress --inline --port 8080 --config webpack.config.js",
-    "build": "webpack --config webpack.config.js"
+    "serve": "webpack-dev-server --progress --inline --port 8080 --config webpack.serve.js",
+    "build": "webpack --config webpack.build.js -p"
   },
   "files": [
-    "preducs.js",
+    "dist/preducs.min.js",
+    "index.js",
     "README.md",
     "LICENSE"
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.4.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -26,6 +24,8 @@
     "babel-preset-react": "^6.23.0",
     "copy-webpack-plugin": "^4.0.1",
     "file-loader": "^0.9.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   },
