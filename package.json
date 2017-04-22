@@ -1,11 +1,13 @@
 {
   "name": "preducs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Easy to use data store, without much hassle",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack-dev-server --progress --inline --port 8080 --config webpack.serve.js",
-    "build": "webpack --config webpack.build.js -p"
+    "build": "webpack --config webpack.build.js -p",
+    "test": "nyc ava",
+    "test-reporter-html": "nyc --reporter=html ava",
+    "test-watch": "ava --watch"
   },
   "files": [
     "dist/preducs.min.js",
@@ -13,21 +15,57 @@
     "README.md",
     "LICENSE"
   ],
+  "babel": {
+    "plugins": [
+      "babel-plugin-transform-object-rest-spread"
+    ],
+    "presets": [
+      "env"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "tests/*.*",
+      "tests/**/*.*"
+    ]
+  },
+  "ava": {
+    "files": [
+      "tests/*.js",
+      "!tests/utilities/*"
+    ],
+    "source": [
+      "index.js"
+    ],
+    "color": true,
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "tap": true,
+    "powerAssert": true,
+    "require": [
+      "babel-register"
+    ],
+    "babel": {
+      "plugins": [
+        "babel-plugin-transform-object-rest-spread"
+      ],
+      "presets": [
+        "env"
+      ]
+    }
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "ava": "^0.19.1",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.4.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.2.1",
-    "babel-preset-react": "^6.23.0",
-    "copy-webpack-plugin": "^4.0.1",
-    "file-loader": "^0.9.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "nyc": "^10.2.0",
+    "webpack": "^2.2.1"
   },
   "engines": {
     "node": ">=5.0.0"
