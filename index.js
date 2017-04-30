@@ -7,7 +7,14 @@
  */
 function interceptor(cached, state, modifier) {
     if (modifier) {
-        return { ...(modifier(cached, state)) };
+        let out = modifier(cached, state);
+
+        // If this is a promise-based modifier return the promise
+        if (out.then) {
+            return out;
+        }
+
+        return { ...(out) };
     }
     return { ...cached, ...state };
 }
@@ -64,7 +71,18 @@ export default function createStore(initialData = {}) {
          */
         update(state = {}, modifier) {
             data = interceptor({ ...data }, state, modifier);
-            commit({ ...data });
+
+            // If we have a promise here
+            if (data.then) {
+                // Handle the resolve
+                data.then(res => {
+                    commit({ ...res });
+                }, () => {
+                    commit({ ...state });
+                });
+            } else {
+                commit({...data});
+            }
         },
 
         /**
