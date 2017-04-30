@@ -1,7 +1,7 @@
 "use strict";
 
 import test from 'ava';
-import createStore from '../index';
+import { createStore } from '../index';
 import is from './utilities/is';
 
 const apiDefinition = {

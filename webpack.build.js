@@ -9,7 +9,9 @@ const entry = {
 
 const output = {
     path: path.resolve('./dist'),
-    filename: 'preducs.min.js'
+    filename: 'preducs.min.js',
+    libraryTarget: 'var',
+    library: 'preducs'
 };
 
 const modules = {

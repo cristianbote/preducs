@@ -1,7 +1,7 @@
 "use strict";
 
 import test from 'ava';
-import createStore from '../index';
+import { createStore } from '../index';
 
 test('Create a store with initial data and modifiers', (t) => {
     let initialData = { foo: true, baz: { foo: 1 } };

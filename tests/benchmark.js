@@ -1,7 +1,7 @@
 "use strict";
 
 import test from 'ava';
-import createStore from '../index';
+import { createStore } from '../index';
 
 test('Benchmark how fast the subscriber is called', (t) => {
     let initialData = { foo: true, list: [] };

@@ -24,7 +24,7 @@ function interceptor(cached, state, modifier) {
  * @param {object} [initialData]
  * @returns {object}
  */
-export default function createStore(initialData = {}) {
+export function createStore(initialData = {}) {
     let data = { ...initialData };
     let listeners = {};
     let id = 0;

@@ -1,7 +1,7 @@
 "use strict";
 
 import test from 'ava';
-import createStore from '../index';
+import { createStore } from '../index';
 
 test('Promise based modifiers', (t) => {
     let initialData = { foo: true, baz: { foo: 1 } };
