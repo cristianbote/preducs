@@ -5,12 +5,6 @@ import createStore from '../index';
 import is from './utilities/is';
 
 const apiDefinition = {
-    '__data': 'object',
-    '__history': 'object',
-    '__listeners': 'object',
-    '__id': 'number',
-    '__commit': 'function',
-    '__getNextId': 'function',
     'subscribeToUpdates': 'function',
     'update': 'function',
     'getState': 'function'

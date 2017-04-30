@@ -18,32 +18,30 @@ function interceptor(cached, state, modifier) {
  * @returns {object}
  */
 export default function createStore(initialData = {}) {
+    let data = { ...initialData };
+    let listeners = {};
+    let id = 0;
+
+    /**
+     * Executes the subscribers
+     * @param {object} data
+     * @private
+     */
+    const commit = (data) => {
+        Object.keys(listeners)
+            .map(id => {
+                listeners[id](data);
+            });
+    };
+
+    /**
+     * Handler to get a unique id. Silly.
+     * @returns {number}
+     * @private
+     */
+    const getNextId = () => ++id;
+
     return {
-        __data: { ...initialData },
-        __history: {},
-        __listeners: {},
-        __id: 0,
-
-        /**
-         * Executes the subscribers
-         * @param {object} data
-         * @private
-         */
-        __commit(data) {
-            Object.keys(this.__listeners)
-                .map(id => {
-                    this.__listeners[id](data);
-                });
-        },
-
-        /**
-         * Handler to get a unique id. Silly.
-         * @returns {number}
-         * @private
-         */
-        __getNextId() {
-            return ++this.__id;
-        },
 
         /**
          * Subscribe to store changes and returns the unsubscriber.
@@ -51,11 +49,11 @@ export default function createStore(initialData = {}) {
          * @returns {function}
          */
         subscribeToUpdates(cb) {
-            let id = this.__getNextId();
-            this.__listeners[id] = cb;
+            let id = getNextId();
+            listeners[id] = cb;
 
             return () => {
-                delete this.__listeners[id];
+                delete listeners[id];
             }
         },
 
@@ -65,10 +63,8 @@ export default function createStore(initialData = {}) {
          * @param {function} modifier
          */
         update(state = {}, modifier) {
-            this.__history = { ...this.__data };
-            this.__data = interceptor({ ...this.__data }, state, modifier);
-
-            this.__commit({ ...this.__data });
+            data = interceptor({ ...data }, state, modifier);
+            commit({ ...data });
         },
 
         /**
@@ -76,7 +72,7 @@ export default function createStore(initialData = {}) {
          * @returns {object}
          */
         getState() {
-            return { ...this.__data };
+            return { ...data };
         }
     }
 }
