@@ -1,5 +1,5 @@
 "use strict";
-
+import fetch from 'node-fetch';
 import test from 'ava';
 import { createStore } from '../index';
 
@@ -20,6 +20,38 @@ test('Promise based modifiers', (t) => {
 
     store.subscribeToUpdates((data) => {
         t.is(data.modified, true, 'Modifier did not worked');
+    });
+
+    // Update the store
+    store.update(initialData, modifier);
+});
+
+
+test('Fetch modifiers', (t) => {
+    let initialData = { loading: true, error: null };
+    let apiEndpoint = 'https://baconipsum.com/api/?type=all-meat&paras=1&start-with-lorem=1';
+
+    // Define the modifier
+    let modifier = (cached, data) => {
+        return fetch(apiEndpoint)
+            .then(res => {
+                return {
+                    ...res.json,
+                    loading: false
+                }
+            }, error => {
+                return {
+                    loading: false,
+                    error: true
+                }
+            });
+    };
+
+    // New store
+    let store = createStore();
+
+    store.subscribeToUpdates((data) => {
+        t.is(data.loading, false, 'Modifier did not worked');
     });
 
     // Update the store

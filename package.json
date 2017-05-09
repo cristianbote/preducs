@@ -12,6 +12,7 @@
   "files": [
     "dist/preducs.min.js",
     "index.js",
+    "package.json",
     "README.md",
     "LICENSE"
   ],
@@ -55,7 +56,7 @@
       ]
     }
   },
-  "author": "",
+  "author": "Cristian Bote <me@cristianbote.ro>",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
@@ -64,10 +65,12 @@
     "babel-loader": "^6.4.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.2.1",
+    "node-fetch": "^1.6.3",
     "nyc": "^10.2.0",
     "webpack": "^2.2.1"
   },
   "engines": {
     "node": ">=5.0.0"
-  }
+  },
+  "repository": "git@github.com:cristianbote/preducs.git"
 }
