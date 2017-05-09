@@ -1,6 +1,6 @@
 # preducs
 
-Tiny library to manage your application state. It supports interceptors(modifiers) to handle and modify data on the fly.
+Tiny library(1.3Kb) to manage your application state. It supports interceptors(modifiers) to handle and modify data on the fly.
 
 ## Status
 [![npm version](https://badge.fury.io/js/preducs.svg)](https://badge.fury.io/js/preducs) [![Build Status](https://travis-ci.org/cristianbote/preducs.svg?branch=master)](https://travis-ci.org/cristianbote/preducs)
@@ -24,10 +24,8 @@ let unsubscribe = store.subscribeToUpdates((state) => {
     unsubscribe();
 });
 
-// Update the store, with a call to a api
-store.update({
-    loading: false
-}, (currentState, newState) => {
+// Our lightweight interceptor(modifier)
+const initialDataModifier = (currentState, newState) => {
     return fetch('/api/endpoint')
         .then(res => {
             return {
@@ -35,10 +33,19 @@ store.update({
                 ...res.json()
             }
         });
-});
+};
+
+// Update the store, with a call to a api
+store.update({
+    loading: false
+}, initialDataModifier);
 
 ```
 And that's about it!
 
 ## Instal it
 `npm install preducs`
+
+or
+ 
+`yarn add preducs`
